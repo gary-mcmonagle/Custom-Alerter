@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlerterFunctions", "AlerterFunctions\AlerterFunctions.csproj", "{7563A28F-E264-4A14-84E3-D0C403B29B02}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlerterScraper", "AlerterScraper\AlerterScraper.csproj", "{5FA3DE16-B787-414E-90FF-B28313B9DCF2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlerterTranslator", "AlerterTranslator\AlerterTranslator.csproj", "{3E907431-FF4B-4981-BD29-5E1B7C550C2A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7563A28F-E264-4A14-84E3-D0C403B29B02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7563A28F-E264-4A14-84E3-D0C403B29B02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7563A28F-E264-4A14-84E3-D0C403B29B02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7563A28F-E264-4A14-84E3-D0C403B29B02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5FA3DE16-B787-414E-90FF-B28313B9DCF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FA3DE16-B787-414E-90FF-B28313B9DCF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FA3DE16-B787-414E-90FF-B28313B9DCF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FA3DE16-B787-414E-90FF-B28313B9DCF2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E907431-FF4B-4981-BD29-5E1B7C550C2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E907431-FF4B-4981-BD29-5E1B7C550C2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E907431-FF4B-4981-BD29-5E1B7C550C2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E907431-FF4B-4981-BD29-5E1B7C550C2A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
