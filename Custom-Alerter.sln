@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlerterScraper", "AlerterSc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlerterTranslator", "AlerterTranslator\AlerterTranslator.csproj", "{3E907431-FF4B-4981-BD29-5E1B7C550C2A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlerterEmailGeneration", "AlerterEmailGeneration\AlerterEmailGeneration.csproj", "{528F6EA3-06D2-4FEB-A309-C60E3F41E702}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{3E907431-FF4B-4981-BD29-5E1B7C550C2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E907431-FF4B-4981-BD29-5E1B7C550C2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3E907431-FF4B-4981-BD29-5E1B7C550C2A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{528F6EA3-06D2-4FEB-A309-C60E3F41E702}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{528F6EA3-06D2-4FEB-A309-C60E3F41E702}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{528F6EA3-06D2-4FEB-A309-C60E3F41E702}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{528F6EA3-06D2-4FEB-A309-C60E3F41E702}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

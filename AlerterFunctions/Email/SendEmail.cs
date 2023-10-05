@@ -12,7 +12,8 @@ public class SendEmail
 {
     [FunctionName("SendEmail")]
 
-    public async Task Run([QueueTrigger("emails", Connection = "AzureWebJobsStorage")] string myQueueItem, ILogger log)
+    public async Task Run(
+        [QueueTrigger("emails", Connection = "AzureWebJobsStorage")] QueueEmailMessage myQueueItem, ILogger log)
     {
         // This code retrieves your connection string from an environment variable.
         string connectionString = Environment.GetEnvironmentVariable("EMAIL_CONNECTION_STRING");
@@ -22,7 +23,7 @@ public class SendEmail
             new EmailMessage(
                 Environment.GetEnvironmentVariable("EMAIL_FROM"),
                 Environment.GetEnvironmentVariable("EMAIL_TO"),
-                new EmailContent("subject") { Html = myQueueItem }),
+                new EmailContent(myQueueItem.Subject) { Html = myQueueItem.Body }),
             default);
     }
 }

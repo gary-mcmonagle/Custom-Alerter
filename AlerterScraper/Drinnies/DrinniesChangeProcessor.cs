@@ -6,6 +6,7 @@ public class DrinniesChangeProcessor : IDrinniesChangeProcessor
     public ChangeDocument GetChanges(IEnumerable<Product> master, IEnumerable<Product> updated)
     {
         var newVariants = new List<Variant>();
+        var backInStock = new List<Variant>();
 
         Console.WriteLine($"Master count: {master.Count()}");
         Console.WriteLine($"Updated count: {updated.Count()}");
@@ -21,9 +22,12 @@ public class DrinniesChangeProcessor : IDrinniesChangeProcessor
             }
             else
             {
-                // Check for stock changes
+                if (!masterVariant.InStock && variant.InStock)
+                {
+                    backInStock.Add(variant);
+                }
             }
         }
-        return new ChangeDocument { NewProducts = newVariants };
+        return new ChangeDocument { NewProducts = newVariants, BackInStock = backInStock };
     }
 }
