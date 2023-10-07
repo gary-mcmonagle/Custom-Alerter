@@ -31,7 +31,7 @@ public record Variant
     public bool InsuredShippingOnly { get; init; }
 
     [JsonProperty("inStock")]
-    public bool InStock { get; init; } = new();
+    public bool InStock { get; init; } = false;
 
     [JsonProperty("id")]
     public string VariantId { get; init; } = string.Empty;

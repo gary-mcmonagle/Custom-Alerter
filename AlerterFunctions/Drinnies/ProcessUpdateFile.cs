@@ -30,16 +30,8 @@ public class ProcessUpdateFile
         ILogger log)
     {
         var updateProducts = JsonConvert.DeserializeObject<IEnumerable<Product>>(updateBlob);
-        var masterProducts = JsonConvert.DeserializeObject<IEnumerable<Product>>(masterBlob) ?? new List<Product>();
-        ChangeDocument changeSet = null;
-        if (!masterProducts.Any())
-        {
-            changeSet = new ChangeDocument { NewProducts = updateProducts.SelectMany(x => x.Variants) };
-        }
-        else
-        {
-            changeSet = _drinniesChangeProcessor.GetChanges(masterProducts, updateProducts);
-        }
+        var masterProducts = JsonConvert.DeserializeObject<IEnumerable<Product>>(masterBlob ?? "") ?? new List<Product>();
+        var changeSet = await _drinniesChangeProcessor.GetChanges(masterProducts, updateProducts);
         await changeStream.WriteAsync(System.Text.Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(changeSet)));
         await masterStream.WriteAsync(System.Text.Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(updateProducts)));
     }

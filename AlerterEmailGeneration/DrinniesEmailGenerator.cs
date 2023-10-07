@@ -7,19 +7,40 @@ public class DrinniesEmailGenerator : IDrinniesEmailGenerator
 {
     public string? GenerateEmail(ChangeDocument changes)
     {
+        if (changes.NewProducts.Count() == 0 && changes.BackInStock.Count() == 0)
+        {
+            return null;
+        }
         string source =
             @"<div class=""entry"">
             <h1>{{title}}</h1>
             <div class=""body"">
-                {{#each changes}} {{Id}} {{/each}}
+                <h2>Back in stock</h2>
+                {{#each backInStock}}
+                <ul>
+                    <li>{{Name}}</li>
+                    <li>{{Description}}</li>
+                    <li>{{VariantDescription}}</li>
+                </ul>
+                {{/each}}
+                <h2>New Products</h2>
+
+                {{#each newProducts}}
+                    <ul>
+                        <li>{{Name}}</li>
+                        <li>{{Description}}</li>
+                        <li>{{VariantDescription}}</li>
+                    </ul>
+                {{/each}}
             </div>
             </div>";
         var template = Handlebars.Compile(source);
 
         var data = new
         {
-            title = "My new post",
-            changes = new List<object> { new { Id = "GARY" }, new { Id = "TEST" } }
+            title = "Drinnies Update",
+            backInStock = changes.BackInStock,
+            newProducts = changes.NewProducts
         };
 
         var result = template(data);

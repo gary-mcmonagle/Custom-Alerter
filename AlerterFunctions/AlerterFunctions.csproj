@@ -25,5 +25,6 @@
   <ItemGroup>
     <ProjectReference Include="..\AlerterScraper\AlerterScraper.csproj" />
     <ProjectReference Include="..\AlerterEmailGeneration\AlerterEmailGeneration.csproj" />
+    <ProjectReference Include="..\AlerterTranslator\AlerterTranslator.csproj" />
   </ItemGroup>
 </Project>

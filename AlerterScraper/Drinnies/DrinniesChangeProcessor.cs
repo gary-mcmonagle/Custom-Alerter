@@ -1,33 +1,50 @@
 
+using System.Security.Cryptography.X509Certificates;
+using AlerterTranslator;
+
 namespace AlerterScraper.Drinnies;
 
 public class DrinniesChangeProcessor : IDrinniesChangeProcessor
 {
-    public ChangeDocument GetChanges(IEnumerable<Product> master, IEnumerable<Product> updated)
+    private readonly ITranslationService _translationService;
+
+    public DrinniesChangeProcessor(ITranslationService translationService)
     {
-        var newVariants = new List<Variant>();
-        var backInStock = new List<Variant>();
+        _translationService = translationService;
+    }
 
-        Console.WriteLine($"Master count: {master.Count()}");
-        Console.WriteLine($"Updated count: {updated.Count()}");
-
-        var updatedVariants = updated.SelectMany(x => x.Variants);
+    public async Task<ChangeDocument> GetChanges(IEnumerable<Product> master, IEnumerable<Product> updated)
+    {
+        var newProducts = new List<ChangedProduct>();
+        var backInStock = new List<ChangedProduct>();
         var masterVariants = master.SelectMany(x => x.Variants);
-        foreach (var variant in updatedVariants)
+
+        foreach (var updatedProduct in updated)
         {
-            var masterVariant = masterVariants.FirstOrDefault(x => x.Id == variant.Id);
-            if (masterVariant == null)
+            foreach (var updatedVariant in updatedProduct.Variants)
             {
-                newVariants.Add(variant);
-            }
-            else
-            {
-                if (!masterVariant.InStock && variant.InStock)
+                var changedProduct = new ChangedProduct
                 {
-                    backInStock.Add(variant);
+                    Name = updatedProduct.Name,
+                    Description = updatedProduct.Description,
+                    VariantDescription = updatedVariant.Description
+                };
+                var masterVariant = masterVariants.FirstOrDefault(x => x.Id == updatedVariant.Id);
+                if (masterVariant == null)
+                {
+                    var translated = await _translationService.Translate(new[] { updatedProduct.Description, updatedVariant.Description });
+                    newProducts.Add(changedProduct with { Description = translated.First(), VariantDescription = translated.Last() });
+                }
+                else
+                {
+                    if (!masterVariant.InStock && updatedVariant.InStock)
+                    {
+                        var translated = await _translationService.Translate(new[] { updatedProduct.Description, updatedVariant.Description });
+                        newProducts.Add(changedProduct with { Description = translated.First(), VariantDescription = translated.Last() });
+                    }
                 }
             }
         }
-        return new ChangeDocument { NewProducts = newVariants, BackInStock = backInStock };
+        return new ChangeDocument { NewProducts = newProducts, BackInStock = backInStock };
     }
 }
